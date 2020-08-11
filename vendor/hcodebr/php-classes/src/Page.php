@@ -9,6 +9,8 @@ use Rain\Tpl;
      private $tpl;
      private $options = [];
      private $defaults = [
+         "header"=>true,
+         "footer"=>true,
          "data" =>[]
      ];
 
@@ -27,7 +29,7 @@ use Rain\Tpl;
 
           $this->setData($this->options["data"]);
 
-         $this->tpl->draw("header");
+         if ($this->options["header"] === true) $this->tpl->draw("header");
      }
 
 
@@ -49,12 +51,11 @@ use Rain\Tpl;
          return $this->tpl->draw($name, $returnHtml);
 
      }
-
      //Ultimo metodo a ser executado footer
      public function __destruct()
      {
 
-         $this->tpl->draw("footer");
+         if ($this->options["footer"] === true)$this->tpl->draw("footer");
 
      }
  }
